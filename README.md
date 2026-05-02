@@ -27,6 +27,7 @@ Version 1 includes an Excel model and dashboard with:
 The Excel dashboard can be downloaded here:
 
 [Download Excel Model](excel/collateral_margining_simulation_excel_v1.xlsx)
+Click “View raw” if GitHub opens the file preview page.
 
 ## Methodology
 
