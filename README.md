@@ -109,7 +109,7 @@ This is the main value added by the Python version: it transforms the model from
 
 ![Probability of Uncovered Loss by MPoR and Confidence Level](images/python_uncovered_loss_probability.png)
 
-Main Results
+## Main Results
 
 The Monte Carlo simulation shows that initial margin significantly reduces residual counterparty risk.
 
@@ -118,7 +118,7 @@ The sensitivity analysis shows the main trade-off in margining. Higher confidenc
 
 ---
 
-Key Insight
+## Key Insight
 
 The main insight from the project is that collateral reduces counterparty credit risk, but it does not eliminate risk completely.
 
@@ -128,7 +128,7 @@ However, more conservative margin assumptions require more collateral. This can 
 
 ---
 
-What I Learned
+## What I Learned
 
 This project helped me understand the practical link between mark-to-market, variation margin, initial margin and counterparty default risk.
 
