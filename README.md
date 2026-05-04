@@ -67,3 +67,92 @@ The simplified mark-to-market formula is:
 
 ```text
 MTM = ((Underlying Price - Forward Strike) / Forward Strike) × Notional
+
+Variation margin is calculated as the daily change in mark-to-market:
+IM = z-score × Daily MTM Volatility × sqrt(MPoR)
+
+The default scenario compares the mark-to-market at the default day with the mark-to-market at the close-out day:
+Loss during MPoR = max(MTM at Close-out - MTM at Default, 0)
+
+The uncovered loss is then calculated as:
+Uncovered Loss = max(Loss during MPoR - Initial Margin, 0)
+
+---
+
+Python Monte Carlo Extension
+
+The Python extension adds a Monte Carlo simulation layer to the Excel model.
+
+In Excel, the dashboard explains one simulated scenario. In Python, the model runs many simulated paths and estimates the probability that losses during the Margin Period of Risk exceed the available initial margin.
+
+This is the main value added by the Python version: it transforms the model from a single-scenario explanation into a distribution-based risk analysis.
+
+este gráfico: Multiple Simulated Underlying Price Paths
+
+este gráfico: Distribution of Losses During MPoR
+
+este gráfico: Distribution of Positive Uncovered Losses
+
+este gráfico: Initial Margin vs Loss During MPoR
+
+este gráfico: Average Initial Margin by MPoR and Confidence Level
+
+este gráfico: Probability of Uncovered Loss by MPoR and Confidence Level
+
+
+Main Results
+
+The Monte Carlo simulation shows that initial margin significantly reduces residual counterparty risk.
+
+In the base case, using a 99% confidence level, the probability of uncovered loss is low, close to 1%. This is consistent with the purpose of a 99% initial margin buffer: it is designed to cover most adverse scenarios, but not every possible outcome.
+The sensitivity analysis shows the main trade-off in margining. Higher confidence levels and longer Margin Periods of Risk increase the required initial margin. This reduces the probability of uncovered loss, but also increases the amount of collateral that must be posted.
+
+---
+
+Key Insight
+
+The main insight from the project is that collateral reduces counterparty credit risk, but it does not eliminate risk completely.
+
+Variation margin reduces current exposure by updating collateral daily. Initial margin provides a buffer against potential losses after default and before the position can be closed or replaced.
+
+However, more conservative margin assumptions require more collateral. This can reduce counterparty risk, but it can also increase liquidity pressure. In other words, margining can transform part of the problem from credit risk into liquidity risk.
+
+---
+
+What I Learned
+
+This project helped me understand the practical link between mark-to-market, variation margin, initial margin and counterparty default risk.
+
+The most important learning point was that collateral is not just a static protection mechanism. It is a dynamic process. As markets move, collateral has to move as well. This makes the system safer from a credit risk perspective, but it can also create stress when large margin calls happen quickly.
+
+Building the project first in Excel helped me understand the mechanics visually. Rebuilding it in Python then made it possible to move from one scenario to thousands of scenarios using Monte Carlo simulation.
+
+
+Files
+Excel Model
+
+Download Excel Model
+
+If GitHub opens the file preview page, click View raw to download the workbook.
+
+Python Notebook
+
+Open in Google Colab
+
+Limitations
+
+This is a simplified educational model. It does not include discounting, netting sets, collateral thresholds, minimum transfer amounts, funding costs, wrong-way risk, legal close-out mechanics or a full SIMM implementation.
+
+The initial margin calculation used here is a simplified parametric VaR-style approximation, not an industry-standard SIMM model.
+
+The objective is not to build a production-grade margin engine, but to make the mechanics of collateral, variation margin, initial margin and default exposure intuitive and transparent.
+
+Next Steps
+
+Possible extensions include:
+
+adding historical market data
+running stressed volatility scenarios
+adding collateral thresholds and minimum transfer amounts
+comparing Monte Carlo results with historical simulation
+extending the model toward a simplified SIMM-style framework
