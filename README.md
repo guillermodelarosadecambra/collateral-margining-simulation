@@ -137,7 +137,7 @@ The most important learning point was that collateral is not just a static prote
 Building the project first in Excel helped me understand the mechanics visually. Rebuilding it in Python then made it possible to move from one scenario to thousands of scenarios using Monte Carlo simulation.
 
 
-##Files
+## Files
 ### Excel Model
 
 [Download Excel Model](excel/collateral_margining_simulation_excel_v1.xlsx)
@@ -150,7 +150,7 @@ If GitHub opens the file preview page, click **View raw** to download the workbo
 
 ---
 
-##Limitations
+## Limitations
 
 This is a simplified educational model. It does not include discounting, netting sets, collateral thresholds, minimum transfer amounts, funding costs, wrong-way risk, legal close-out mechanics or a full SIMM implementation.
 
