@@ -65,21 +65,27 @@ The underlying asset price is simulated using Geometric Brownian Motion. The mod
 
 The simplified mark-to-market formula is:
 
-```text
-MTM = ((Underlying Price - Forward Strike) / Forward Strike) × Notional
+**MTM = ((Underlying Price - Forward Strike) / Forward Strike) × Notional**
 
 Variation margin is calculated as the daily change in mark-to-market:
-IM = z-score × Daily MTM Volatility × sqrt(MPoR)
+
+**VM = MTM_today - MTM_yesterday**
+
+Initial margin is estimated using a simplified parametric VaR-style approach:
+
+**IM = z-score × Daily MTM Volatility × sqrt(MPoR)**
 
 The default scenario compares the mark-to-market at the default day with the mark-to-market at the close-out day:
-Loss during MPoR = max(MTM at Close-out - MTM at Default, 0)
+
+**Loss during MPoR = max(MTM at Close-out - MTM at Default, 0)**
 
 The uncovered loss is then calculated as:
-Uncovered Loss = max(Loss during MPoR - Initial Margin, 0)
+
+**Uncovered Loss = max(Loss during MPoR - Initial Margin, 0)**
 
 ---
 
-Python Monte Carlo Extension
+## Python Monte Carlo Extension
 
 The Python extension adds a Monte Carlo simulation layer to the Excel model.
 
@@ -156,3 +162,5 @@ running stressed volatility scenarios
 adding collateral thresholds and minimum transfer amounts
 comparing Monte Carlo results with historical simulation
 extending the model toward a simplified SIMM-style framework
+
+---
