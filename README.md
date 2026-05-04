@@ -1,5 +1,7 @@
 # Collateral and Margining Simulation
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1anJVXWcWzVcRzVR4NavaozByr4ITK9lO?usp=sharing)
+
 This project is an educational Excel-based simulation designed to explain the mechanics of collateral, variation margin, initial margin and counterparty default risk in OTC derivatives.
 
 The model simulates an underlying asset price path, calculates the mark-to-market of a simplified forward contract, estimates daily variation margin, calculates initial margin using a simplified parametric VaR-style approach and analyses what happens if a counterparty defaults during the Margin Period of Risk.
