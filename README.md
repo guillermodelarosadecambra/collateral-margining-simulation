@@ -2,57 +2,68 @@
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1anJVXWcWzVcRzVR4NavaozByr4ITK9lO?usp=sharing)
 
-This project is an educational Excel-based simulation designed to explain the mechanics of collateral, variation margin, initial margin and counterparty default risk in OTC derivatives.
+This project is an educational Excel and Python simulation designed to understand how collateral, variation margin, initial margin and counterparty default risk interact in OTC derivatives.
 
-The model simulates an underlying asset price path, calculates the mark-to-market of a simplified forward contract, estimates daily variation margin, calculates initial margin using a simplified parametric VaR-style approach and analyses what happens if a counterparty defaults during the Margin Period of Risk.
+I built this project because I wanted to move beyond the theory and create a simple model that makes the mechanics of margining visible. The objective was not to build a production-grade margin engine, but to understand the intuition behind the process and explain it in a clear and accessible way.
 
-The objective is to understand how collateral reduces counterparty risk while also showing how margin calls may create liquidity pressure under stressed market conditions.
+---
 
-## Dashboard Preview
+## Why I Built This
+
+Collateral is often presented as a mechanism that reduces counterparty risk. That is true, but the story is more nuanced.
+
+Variation margin helps reduce current exposure by adjusting collateral as the value of the derivative changes. Initial margin acts as an additional buffer in case the counterparty defaults and the position cannot be closed immediately.
+
+However, collateral does not eliminate risk completely. Under stressed market conditions, losses during the Margin Period of Risk may exceed the available initial margin. At the same time, margin calls can create liquidity pressure because market participants may need to post cash or eligible collateral quickly.
+
+The main question I wanted to explore was:
+
+**Does collateral fully protect against counterparty risk, or does it also transform part of that risk into liquidity pressure?**
+
+---
+
+## What the Model Does
+
+The project is divided into two parts.
+
+### 1. Excel Dashboard
+
+The Excel model focuses on one simulated market scenario. It shows the mechanics step by step:
+
+- simulate the underlying asset price
+- calculate the mark-to-market of a simplified long forward contract
+- compute daily variation margin
+- estimate initial margin
+- simulate a counterparty default
+- calculate the loss during the Margin Period of Risk
+- compare that loss with the available initial margin
+- summarise the results in a dashboard
+
+The Excel version is useful because it makes the logic visual and easy to follow.
+
+### 2. Python Monte Carlo Extension
+
+The Python notebook extends the Excel model by running thousands of simulated market scenarios.
+
+Instead of asking what happens in one scenario, Python allows the model to ask:
+
+**Across many possible market paths, how often is the initial margin not enough to cover losses during the Margin Period of Risk?**
+
+This turns the project from a single-scenario explanation into a basic risk simulation framework.
+
+---
+
+## Excel Dashboard Preview
 
 ![Dashboard Screenshot](images/dashboard_screenshot.png)
 
-## Current Version
-
-Version 1 includes an Excel model and dashboard with:
-
-- Underlying asset simulation
-- Forward mark-to-market calculation
-- Daily variation margin
-- Initial margin calculation
-- Default scenario analysis
-- Sensitivity analysis
-- Interactive dashboard
-
-## Excel Model
-
-The Excel dashboard can be downloaded here:
-
-[Download Excel Model](excel/collateral_margining_simulation_excel_v1.xlsx)
-Click “View raw” if GitHub opens the file preview page.
+---
 
 ## Methodology
 
-The model follows a simplified workflow:
+The underlying asset price is simulated using Geometric Brownian Motion. The model then calculates the value of a simplified long forward contract.
 
-1. Simulate an underlying asset price path using Geometric Brownian Motion.
-2. Calculate the mark-to-market value of a simplified long forward contract.
-3. Compute daily variation margin as the daily change in mark-to-market.
-4. Estimate initial margin using a parametric VaR-style approach.
-5. Simulate a counterparty default during the life of the trade.
-6. Compare the loss during the Margin Period of Risk with the available initial margin.
-7. Analyse how confidence levels and MPoR assumptions affect collateral requirements.
+The simplified mark-to-market formula is:
 
-## Key Insight
-
-Collateral reduces counterparty risk by requiring collateral to be exchanged as exposures change. Variation margin adjusts collateral daily to the current value of the contract, while initial margin acts as a buffer against potential losses after default and before the position can be closed or replaced.
-
-However, collateral does not eliminate risk completely. In stressed scenarios, losses during the Margin Period of Risk may exceed the available initial margin, creating uncovered losses. More conservative margin assumptions reduce counterparty risk, but they also increase collateral requirements and may create liquidity pressure.
-
-## Limitations
-
-This is a simplified educational model. It does not include discounting, netting sets, collateral thresholds, minimum transfer amounts, funding costs, wrong-way risk, legal close-out mechanics or a full SIMM implementation.
-
-## Next Steps
-
-A Python Monte Carlo extension will be added to run multiple simulations and estimate the probability of uncovered losses under different margin assumptions.
+```text
+MTM = ((Underlying Price - Forward Strike) / Forward Strike) × Notional
