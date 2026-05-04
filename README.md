@@ -135,15 +135,17 @@ Building the project first in Excel helped me understand the mechanics visually.
 
 
 Files
-Excel Model
+### Excel Model
 
-Download Excel Model
+[Download Excel Model](excel/collateral_margining_simulation_excel_v1.xlsx)
 
-If GitHub opens the file preview page, click View raw to download the workbook.
+If GitHub opens the file preview page, click **View raw** to download the workbook.
 
-Python Notebook
+### Python Notebook
 
-Open in Google Colab
+[Open in Google Colab](https://colab.research.google.com/drive/1anJVXWcWzVcRzVR4NavaozByr4ITK9lO?usp=sharing)
+
+---
 
 Limitations
 
