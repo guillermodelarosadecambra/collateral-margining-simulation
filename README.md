@@ -93,18 +93,21 @@ In Excel, the dashboard explains one simulated scenario. In Python, the model ru
 
 This is the main value added by the Python version: it transforms the model from a single-scenario explanation into a distribution-based risk analysis.
 
-este gráfico: Multiple Simulated Underlying Price Paths
+### Multiple Simulated Underlying Price Paths
 
-este gráfico: Distribution of Losses During MPoR
+![Multiple Simulated Underlying Price Paths](images/python_multiple_paths.png)
 
-este gráfico: Distribution of Positive Uncovered Losses
+### Distribution of Losses During MPoR
 
-este gráfico: Initial Margin vs Loss During MPoR
+![Distribution of Losses During MPoR](images/python_loss_distribution.png)
 
-este gráfico: Average Initial Margin by MPoR and Confidence Level
+### Average Initial Margin by MPoR and Confidence Level
 
-este gráfico: Probability of Uncovered Loss by MPoR and Confidence Level
+![Average Initial Margin by MPoR and Confidence Level](images/python_initial_margin_sensitivity.png)
 
+### Probability of Uncovered Loss by MPoR and Confidence Level
+
+![Probability of Uncovered Loss by MPoR and Confidence Level](images/python_uncovered_loss_probability.png)
 
 Main Results
 
